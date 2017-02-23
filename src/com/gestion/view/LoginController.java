@@ -39,10 +39,6 @@ public class LoginController {
     @FXML
     private TextField tfUserName;
     @FXML
-    private Button btnUserNameTfClear;
-    @FXML
-    private Button btnPassFieldClear;
-    @FXML
     private PasswordField pfUserPassword;
 
     @FXML

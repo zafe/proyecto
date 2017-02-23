@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane fx:id="apDesignPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gestion.view.LoginController">
    <children>
-      <HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="apMother" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="358.0">
                <children>
@@ -33,13 +32,13 @@
                            <children>
                               <Label text="Username:" />
                               <Label text="Password:" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="tfUserName" onAction="#pfUserNameOnHitEnter" GridPane.columnIndex="1" />
+                              <TextField fx:id="pfUserPassword" onAction="#pfUserPassOnHitEnter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <Button layoutX="154.0" layoutY="160.0" mnemonicParsing="false" text="Login" />
-                        <Hyperlink layoutX="125.0" layoutY="198.0" text="Create an account" />
-                        <Hyperlink layoutX="148.0" layoutY="221.0" text="DB Setup" />
+                        <Button fx:id="btnLogin" layoutX="154.0" layoutY="160.0" mnemonicParsing="false" onAction="#btnLogin" text="Login" />
+                        <Hyperlink fx:id="hlCrateAccount" layoutX="125.0" layoutY="198.0" onAction="#hlCreateAnAccount" text="Create an account" />
+                        <Hyperlink fx:id="hlDatabase" layoutX="148.0" layoutY="221.0" onAction="#hlDbOnAction" text="DB Setup" />
                      </children>
                   </AnchorPane>
                </children>
