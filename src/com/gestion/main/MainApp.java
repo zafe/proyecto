@@ -23,14 +23,14 @@ public MainApp() {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/gestion/view/Login.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Welcome to LogiServ -Login");
             //primaryStage.getIcons().add(new Image("/image/icon.png"));
             primaryStage.setMaximized(false);
-            primaryStage.setMinHeight(500.0);
-            primaryStage.setMinWidth(850.0);
+            primaryStage.setMinHeight(600.0);
+            primaryStage.setMinWidth(400.0);
             primaryStage.show();
         } catch (IOException ex) {
             Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);

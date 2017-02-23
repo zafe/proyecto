@@ -76,7 +76,7 @@ public class LoginController {
     
     @FXML
     private void hlCreateAnAccount(ActionEvent event) throws IOException {
-        DBConnection dbCon = new DBConnection();
+        /*DBConnection dbCon = new DBConnection();
         con = dbCon.geConnection();
         if (con != null) {
             try {
@@ -111,13 +111,13 @@ public class LoginController {
             alert.initStyle(StageStyle.UNDECORATED);
             alert.showAndWait();
         }
-
+*/
     }
     
     
     @FXML
     private void btnLogin(ActionEvent event) throws IOException {
-
+/*
         DBConnection dbCon = new DBConnection();
         con = dbCon.geConnection();
         if (con != null) {
@@ -174,7 +174,7 @@ public class LoginController {
             alert.setContentText("Make sure your mysql is Start properly, \n");
             alert.initStyle(StageStyle.UNDECORATED);
             alert.showAndWait();
-        }
+        }*/
 
     }
     
@@ -182,7 +182,7 @@ public class LoginController {
     private void loadRegistration() {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/view/Registration.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/com/gestion/view/Registration.fxml"));
             Scene scene = new Scene(root);
             Stage nStage = new Stage();
             nStage.setScene(scene);
@@ -238,9 +238,9 @@ public class LoginController {
     
     @FXML
     private void hlDbOnAction(ActionEvent event) {
-        Parent root = null;
+        /*Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/view/Server.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/com/gestion/view/Server.fxml"));
             Scene scene = new Scene(root);
             Stage nStage = new Stage();
             nStage.setScene(scene);
@@ -249,7 +249,7 @@ public class LoginController {
             nStage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
     
 

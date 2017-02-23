@@ -73,7 +73,7 @@ public class DBModel {
             pst.execute();
             
             pst = con.mkDataBase().prepareStatement("CREATE TABLE if not exists "+db+".`TURNO` (\n"
-                    + "  `Id` int(11) NOT NULL AUTO_INCREMENT,\n"
+                    + "  `idTURNO` int(11) NOT NULL AUTO_INCREMENT,\n"
                     + "  `hora_inicio_turno` VARCHAR(45) NULL,\n"
                     + "  `hora_fin_turno` VARCHAR(45) NULL,\n"
                     + "  `descripcion` VARCHAR(45) NULL,\n"
@@ -91,38 +91,41 @@ public class DBModel {
                     + "  PRIMARY KEY (`idEmpleado`, `CategoriaEmpleado_idCategoriaEmpleado`,"
                     + " `Persona_idPersona`, `TURNO_idTURNO`),\n"
                     + "  CONSTRAINT `fk_Empleado_CategoriaEmpleado1`\n"
-                    + "  FOREIGN KEY (`CategoriaEmpleado_idCategoriaEmpleado`)"
-                    + "  REFERENCES `mydb`.`CategoriaEmpleado` (`idCategoriaEmpleado`)"
-                    + "  ON DELETE NO ACTION"
-                    + "  ON UPDATE NO ACTION,"
-                    + "  CONSTRAINT `fk_Empleado_TURNO1`"
-                    + "  FOREIGN KEY (`Persona_idPersona`)"
-                    + "  REFERENCES `mydb`.`TURNO` (`idTURNO`)"
-                    + "  ON DELETE NO ACTION"
-                    + "  ON UPDATE NO ACTION)"
-                    + "  ENGINE = InnoDB"
+                    + "  FOREIGN KEY (`CategoriaEmpleado_idCategoriaEmpleado`)\n"
+                    + "  REFERENCES `mydb`.`CategoriaEmpleado`(`idCategoriaEmpleado`)\n"
+                    + "  ON DELETE NO ACTION\n"
+                    + "  ON UPDATE NO ACTION,\n"
+                    + "  CONSTRAINT `fk_Empleado_Persona1`\n"
+                    + "  FOREIGN KEY (`Persona_idPersona`)\n"
+                    + "   REFERENCES `mydb`.`Persona` (`idPersona`)\n"
+                    + "  ON DELETE NO ACTION\n"
+                    + "  ON UPDATE NO ACTION,\n"
+                    + "  CONSTRAINT `fk_Empleado_TURNO1`\n"
+                    + "  FOREIGN KEY (`TURNO_idTURNO`)\n"
+                    + "  REFERENCES `mydb`.`TURNO` (`idTURNO`)\n"
+                    + "  ON DELETE NO ACTION\n"
+                    + "  ON UPDATE NO ACTION)\n"
+                    + "  ENGINE = InnoDB\n"
                     + "  PACK_KEYS = DEFAULT;");
 
             pst.execute();
-
-            
+/*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Empleado_CategoriaEmpleado1_idx`"
-            		+ "ON" + db +"`Empleado` (`CategoriaEmpleado_idCategoriaEmpleado` ASC);");
+            		"CREATE INDEX `fk_Empleado_CategoriaEmpleado1_idx` ON `mydb`.`Empleado` (`CategoriaEmpleado_idCategoriaEmpleado` ASC);");
 
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
             		"CREATE INDEX `fk_Empleado_Persona1_idx`"
-            		+ "ON" + db +".`Empleado` (`Persona_idPersona` ASC);");
+            		+ " ON `mydb`.`Empleado`(`Persona_idPersona` ASC);");
 
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
             		"CREATE INDEX `fk_Empleado_TURNO1_idx`"
-            		+ "ON" + db +".`Empleado` (`TURNO_idTURNO` ASC);");
+            		+ " ON `mydb`.`Empleado`(`TURNO_idTURNO` ASC);");
 
             pst.execute();
             
-            
+  */          
             pst = con.mkDataBase().prepareStatement("CREATE TABLE if not exists "+db+".`Localidad` (\n"
                     + "  `idLocalidad` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `NombreLocalidad` VARCHAR(45) NULL,\n"
@@ -153,11 +156,16 @@ public class DBModel {
                     + "  `Localidad_idLocalidad` INT NOT NULL,\n"
                     + "  `Provincia_idProvincia` INT NOT NULL,\n"
                     + "  `Direccion_idDireccion` INT NOT NULL,\n"
-                    + "  PRIMARY KEY (`idDomicilio`, `Localidad_idLocalidad`, \n"
+                    + "  PRIMARY KEY (`idDomicilio`, `Localidad_idLocalidad`,"
                     + "  `Provincia_idProvincia`, `Direccion_idDireccion`),\n"
                     + "  CONSTRAINT `fk_Domicilio_Localidad1`\n"
                     + "  FOREIGN KEY (`Localidad_idLocalidad`)\n"
-                    + "  REFERENCES `mydb`.`Localidad` (`idLocalidad`)"
+                    + "  REFERENCES `mydb`.`Localidad` (`idLocalidad`)\n"
+                    + "  ON DELETE NO ACTION\n"
+                    + "  ON UPDATE NO ACTION,\n"
+                    + "  CONSTRAINT `fk_Domicilio_Provincia1`\n"
+                    + "  FOREIGN KEY (`Provincia_idProvincia`)\n"
+                    + "  REFERENCES `mydb`.`Provincia` (`idProvincia`)\n"
                     + "  ON DELETE NO ACTION\n"
                     + "  ON UPDATE NO ACTION,\n"
                     + "  CONSTRAINT `fk_Domicilio_Direccion1`\n"
@@ -169,23 +177,23 @@ public class DBModel {
             pst.execute();
             
          
-            pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Domicilio_Localidad1_idx`"
+  /*          pst = con.mkDataBase().prepareStatement(
+            		"CREATE INDEX `fk_Domicilio_Localidad1_idx` "
             		+ "ON" + db +".`Domicilio` (`Localidad_idLocalidad` ASC);");
 
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Domicilio_Provincia1_idx`"
+            		"CREATE INDEX `fk_Domicilio_Provincia1_idx` "
             		+ "ON" + db +".`Domicilio` (`Provincia_idProvincia` ASC);");
 
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Domicilio_Direccion1_idx`"
+            		"CREATE INDEX `fk_Domicilio_Direccion1_idx` "
             		+ "ON" + db +".`Domicilio` (`Direccion_idDireccion` ASC);");
 
             pst.execute();
             
-            
+       */     
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`Proveedor` (\n"
                     + "  `idProveedor` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `Nombre` VARCHAR(45) NULL,\n"
@@ -200,13 +208,13 @@ public class DBModel {
                     + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
-           
+           /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Proveedor_Domicilio1_idx`"
+            		"CREATE INDEX `fk_Proveedor_Domicilio1_idx` "
             		+ "ON" + db +".`Proveedor` (`Direccion_idDireccion` ASC);");
 
             pst.execute();
-           
+           */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`Finca` (\n"
                     + "  `idFinca` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `Dueño_idDueño` INT NOT NULL,\n"
@@ -238,13 +246,13 @@ public class DBModel {
                     + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
-            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Ingenio_Dueño1_idx`"
+            		"CREATE INDEX `fk_Ingenio_Dueño1_idx` "
             		+ "ON" + db +".`Ingenio` (`Dueño_idDueño` ASC);");
 
             pst.execute();
-           
+           */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`Finca` (\n"
                     + "  `idFinca` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `Dueño_idDueño` INT NOT NULL,\n"
@@ -256,13 +264,13 @@ public class DBModel {
                     + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
-            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Finca_Dueño1_idx`"
+            		"CREATE INDEX `fk_Finca_Dueño1_idx` "
             		+ "ON" + db +".`Finca` (`Dueño_idDueño` ASC);");
 
             pst.execute();
-            
+            */
             
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`Origen_Destino` (\n"
                     + "  `idOrigen_Destino` INT NOT NULL AUTO_INCREMENT,\n"
@@ -277,19 +285,19 @@ public class DBModel {
                     + "  ON UPDATE NO ACTION)"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
-           
+           /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Origen_Destino_Ingenio1_idx`"
+            		"CREATE INDEX `fk_Origen_Destino_Ingenio1_idx` "
             		+ "ON" + db +".`Origen_Destino` (`Ingenio_idIngenio` ASC);");
 
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Origen_Destino_Finca1_idx`"
+            		"CREATE INDEX `fk_Origen_Destino_Finca1_idx` "
             		+ "ON" + db +".`Origen_Destino` (`Finca_idFinca` ASC);");
 
             pst.execute();
             
-          
+          */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`Remito` (\n"
                     + "  `idRemito` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `Fecha` DATE NULL,\n"
@@ -320,27 +328,27 @@ public class DBModel {
                     + "   ON UPDATE NO ACTION)"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
-           
+           /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Remito_Origen_Destino1_idx`"
+            		"CREATE INDEX `fk_Remito_Origen_Destino1_idx` "
             		+ "ON" + db +".`Remito` (`Origen_Destino_idOrigen_Destino` ASC);");
             pst.execute();
             
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Remito_Empleado1_idx`"
+            		"CREATE INDEX `fk_Remito_Empleado1_idx` "
             		+ "ON" + db +".`Remito` (`Empleado_idEmpleado` ASC);");
             pst.execute();
             
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Remito_Camion1_idx`"
+            		"CREATE INDEX `fk_Remito_Camion1_idx` "
             		+ "ON" + db +".`Remito` (`Camion_idCamion` ASC);");
             pst.execute();
             
-           
+           */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`TipoDeServicio` (\n"
                     + "  `idTipoDeServicio` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `NombreServicio` VARCHAR(45) NULL,\n"
-                    + "  `PRIMARY KEY (`idTipoDeServicio`))\n"
+                    + "  PRIMARY KEY (`idTipoDeServicio`))\n"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
            
@@ -348,14 +356,14 @@ public class DBModel {
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`FacturaCompraArticulo` (\n"
                     + "  `idFacturaCompraArticulo` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `Fecha` DATE NULL,\n"
-                    + "  `PRIMARY KEY (`idFacturaCompraArticulo`))\n"
+                    + "  PRIMARY KEY (`idFacturaCompraArticulo`))\n"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
             
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`CategoriaArticulo` (\n"
                     + "  `idCategoriaArticulo` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `NombreCategoria` VARCHAR(45) NULL,\n"
-                    + "  `PRIMARY KEY (`idCategoriaArticulo`))\n"
+                    + "  PRIMARY KEY (`idCategoriaArticulo`))\n"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
             
@@ -366,20 +374,20 @@ public class DBModel {
                     + "  `Descripcion` VARCHAR(45) NULL,\n"
                     + "  `CategoriaArticulo_idCategoriaArticulo` INT NOT NULL,\n"
                     + "  PRIMARY KEY (`idArticulo`, `CategoriaArticulo_idCategoriaArticulo`),\n"
-                    + "   CONSTRAINT `fk_Articulo_CategoriaArticulo1`\n"
+                    + "  CONSTRAINT `fk_Articulo_CategoriaArticulo1`\n"
                     + "  FOREIGN KEY (`CategoriaArticulo_idCategoriaArticulo`)\n"
                     + "  REFERENCES `mydb`.`CategoriaArticulo` (`idCategoriaArticulo`)\n"
                     + "	 ON DELETE NO ACTION\n"
                     + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
-            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Articulo_CategoriaArticulo1_idx`"
+            		"CREATE INDEX `fk_Articulo_CategoriaArticulo1_idx` "
             		+ "ON" + db +".`Articulo` (`CategoriaArticulo_idCategoriaArticulo` ASC);");
             pst.execute();
             
-            
+            */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`CompraArticulo` (\n"
                     + "  `idCompraArticulo` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `Cantidad` TINYINT(4) NULL,\n"
@@ -393,7 +401,7 @@ public class DBModel {
                     + "  FOREIGN KEY (`Articulo_idArticulo`)\n"
                     + "	 REFERENCES `mydb`.`Articulo` (`idArticulo`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION)\n"
+                    + "  ON UPDATE NO ACTION,\n"
                     + "  CONSTRAINT `fk_CompraArticulo_FacturaCompraArticulo1`\n"
                     + "  FOREIGN KEY (`FacturaCompraArticulo_idFacturaCompraArticulo`)\n"
                     + "  REFERENCES `mydb`.`FacturaCompraArticulo` (`idFacturaCompraArticulo`)\n"
@@ -403,45 +411,45 @@ public class DBModel {
                     + "  FOREIGN KEY (`Proveedor_idProveedor`)\n"
                     + "  REFERENCES `mydb`.`Proveedor` (`idProveedor`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
-            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_CompraArticulo_Articulo1_idx`"
+            		"CREATE INDEX `fk_CompraArticulo_Articulo1_idx`  "
             		+ "ON" + db +".`CompraArticulo` (`Articulo_idArticulo` ASC);");
             pst.execute();  
             
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_CompraArticulo_FacturaCompraArticulo1_idx`"
+            		"CREATE INDEX `fk_CompraArticulo_FacturaCompraArticulo1_idx` "
             		+ "ON" + db +".`CompraArticulo` (`FacturaCompraArticulo_idFacturaCompraArticulo` ASC);");
             pst.execute(); 
             
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_CompraArticulo_Proveedor1_idx`"
+            		"CREATE INDEX `fk_CompraArticulo_Proveedor1_idx` "
             		+ "ON" + db +".`CompraArticulo` (`Proveedor_idProveedor` ASC);");
             pst.execute();  
-            
+            */
            
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`Usuario` (\n"
                     + "  `idUsuario` INT NOT NULL AUTO_INCREMENT,\n"
                     + "   `NombreUsuario` VARCHAR(45) NULL,\n"
                     + "  `Password` VARCHAR(45) NULL,\n"
                     + "  `Empleado_idEmpleado` INT NOT NULL,\n"
-                    + "   PRIMARY KEY (`idUsuario`, `Empleado_idEmpleado`),\n"
+                    + "  PRIMARY KEY (`idUsuario`, `Empleado_idEmpleado`),\n"
                     + "  CONSTRAINT `fk_Usuario_Empleado1`\n"
-                    + "   PRIMARY KEY (`idCompraArticulo`, `Articulo_idArticulo`, "
                     + "   FOREIGN KEY (`Empleado_idEmpleado`)\n"
                     + "  REFERENCES `mydb`.`Empleado` (`idEmpleado`)\n"
                     + "  ON DELETE NO ACTION\n"
                     + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Usuario_Empleado1_idx`"
+            		"CREATE INDEX `fk_Usuario_Empleado1_idx` "
             		+ "ON" + db +".`Usuario` (`Empleado_idEmpleado` ASC);");
             pst.execute();  
-                      
+              */        
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`TIPO_LIQ` (\n"
                     + "  `idTIPO_LIQ` INT NOT NULL AUTO_INCREMENT,\n"
                     + "   `nombre` VARCHAR(45) NULL,\n"
@@ -472,19 +480,19 @@ public class DBModel {
                     + "  FOREIGN KEY (`TIPO_LIQ_idTIPO_LIQ`)\n"
                     + "  REFERENCES `mydb`.`TIPO_LIQ` (`idTIPO_LIQ`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
-            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_LiquidacionEmpleado_TIPO_LIQ1_idx`"
+            		"CREATE INDEX `fk_LiquidacionEmpleado_TIPO_LIQ1_idx` "
             		+ "ON" + db +".`LiquidacionEmpleado` (`TIPO_LIQ_idTIPO_LIQ` ASC);");
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_LiquidacionEmpleado_PERIODO_LIQ1_idx`"
+            		"CREATE INDEX `fk_LiquidacionEmpleado_PERIODO_LIQ1_idx` "
             		+ "ON" + db +".`LiquidacionEmpleado` (`PERIODO_LIQ_idPERIODO_LIQ` ASC);");
             pst.execute();
-                        
+                        */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`TIPO_CONCEPTO` (\n"
                     + "  `idTIPO_CONCEPTO` INT NOT NULL AUTO_INCREMENT,\n"
                     + "   `descripcion` VARCHAR(30) NULL,\n"
@@ -506,15 +514,15 @@ public class DBModel {
                     + "	 FOREIGN KEY (`TIPO_CONCEPTO_idTIPO_CONCEPTO`)\n"
                     + "  REFERENCES `mydb`.`TIPO_CONCEPTO` (`idTIPO_CONCEPTO`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
-            
+           /* 
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_CONCEPTO_SUELDO_TIPO_CONCEPTO1_idx`"
+            		"CREATE INDEX `fk_CONCEPTO_SUELDO_TIPO_CONCEPTO1_idx` "
             		+ "ON" + db +".`CONCEPTO_SUELDO` (`TIPO_CONCEPTO_idTIPO_CONCEPTO` ASC);");
             pst.execute();
-                      
+             */         
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`DetalleLiquidacionEmpleado` (\n"
                     + "  `idDetalleLiquidacionEmpleado` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `haberes_remunerativos` DOUBLE NULL,\n"
@@ -523,31 +531,31 @@ public class DBModel {
                     + "  `LiquidacionEmpleado_idLiquidacionEmpleado` INT NOT NULL,\n"
                     + "  `CONCEPTO_SUELDO_idCONCEPTO_SUELDO` INT NOT NULL,\n"
                     + "   PRIMARY KEY (`idDetalleLiquidacionEmpleado`, `LiquidacionEmpleado_idLiquidacionEmpleado`,"
-                    + " `CONCEPTO_SUELDO_idCONCEPTO_SUELDO`), "
-                    + "`FacturaCompraArticulo_idFacturaCompraArticulo`, `Proveedor_idProveedor`),\n"
+                    + " `CONCEPTO_SUELDO_idCONCEPTO_SUELDO`), \n"
+                    
                     + "   CONSTRAINT `fk_DetalleLiquidacionEmpleado_LiquidacionEmpleado1`\n"
                     + "  FOREIGN KEY (`LiquidacionEmpleado_idLiquidacionEmpleado`)\n"
                     + "	 REFERENCES `mydb`.`LiquidacionEmpleado` (`idLiquidacionEmpleado`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION)\n"
+                    + "  ON UPDATE NO ACTION,\n"
                     + "   CONSTRAINT `fk_DetalleLiquidacionEmpleado_CONCEPTO_SUELDO1`\n"
                     + "  FOREIGN KEY (`CONCEPTO_SUELDO_idCONCEPTO_SUELDO`)\n"
                     + "  REFERENCES `mydb`.`CONCEPTO_SUELDO` (`idCONCEPTO_SUELDO`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
-          
+          /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_DetalleLiquidacionEmpleado_LiquidacionEmpleado1_idx`"
+            		"CREATE INDEX `fk_DetalleLiquidacionEmpleado_LiquidacionEmpleado1_idx` "
             		+ "ON" + db +".`DetalleLiquidacionEmpleado` (`LiquidacionEmpleado_idLiquidacionEmpleado` ASC);");
             pst.execute();
                       
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_DetalleLiquidacionEmpleado_CONCEPTO_SUELDO1_idx`"
+            		"CREATE INDEX `fk_DetalleLiquidacionEmpleado_CONCEPTO_SUELDO1_idx` "
             		+ "ON" + db +".`DetalleLiquidacionEmpleado` (`CONCEPTO_SUELDO_idCONCEPTO_SUELDO` ASC);");
             pst.execute();
-            
+            */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`RECIBO_SUELDO` (\n"
                     + "  `idRECIBO_SUELDO` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `fecha` DATE NULL,\n"
@@ -560,15 +568,15 @@ public class DBModel {
                     + "  FOREIGN KEY (`LiquidacionEmpleado_idLiquidacionEmpleado`)\n"
                     + "  REFERENCES `mydb`.`LiquidacionEmpleado` (`idLiquidacionEmpleado`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
-            	
+            	/*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_RECIBO_SUELDO_LiquidacionEmpleado1_idx`"
+            		"CREATE INDEX `fk_RECIBO_SUELDO_LiquidacionEmpleado1_idx` "
             		+ "ON" + db +".`RECIBO_SUELDO` (`LiquidacionEmpleado_idLiquidacionEmpleado` ASC);");
             pst.execute();
-            
+            */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`RELACION__EMPLEADO_CONCEPTOS` (\n"
                     + " `unidad_concepto` VARCHAR(40) NULL,\n"
                     + "  `TIPO_LIQ_idTIPO_LIQ` INT NOT NULL,\n"
@@ -577,9 +585,9 @@ public class DBModel {
                     + "  PRIMARY KEY (`TIPO_LIQ_idTIPO_LIQ`, `CONCEPTO_SUELDO_idCONCEPTO_SUELDO`, `Empleado_idEmpleado`),\n"
                     + " CONSTRAINT `fk_RELACION__EMPLEADO_CONCEPTOS_TIPO_LIQ1`\n"
                     + "  FOREIGN KEY (`TIPO_LIQ_idTIPO_LIQ`) "
-                    + "`REFERENCES `mydb`.`TIPO_LIQ` (`idTIPO_LIQ`)\n"
+                    + "  REFERENCES `mydb`.`TIPO_LIQ` (`idTIPO_LIQ`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION)\n"
+                    + "  ON UPDATE NO ACTION,\n"
                     + "  CONSTRAINT `fk_RELACION__EMPLEADO_CONCEPTOS_CONCEPTO_SUELDO1`\n"
                     + "  FOREIGN KEY (`CONCEPTO_SUELDO_idCONCEPTO_SUELDO`)\n"
                     + "  REFERENCES `mydb`.`CONCEPTO_SUELDO` (`idCONCEPTO_SUELDO`)\n"
@@ -589,20 +597,20 @@ public class DBModel {
                     + "  FOREIGN KEY (`Empleado_idEmpleado`)\n"
                     + "  REFERENCES `mydb`.`Empleado` (`idEmpleado`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute(); 
-            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_RELACION__EMPLEADO_CONCEPTOS_CONCEPTO_SUELDO1_idx`"
+            		"CREATE INDEX `fk_RELACION__EMPLEADO_CONCEPTOS_CONCEPTO_SUELDO1_idx` "
             		+ "ON" + db +".`RELACION__EMPLEADO_CONCEPTOS` (`CONCEPTO_SUELDO_idCONCEPTO_SUELDO` ASC);");
             pst.execute();
            
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_RELACION__EMPLEADO_CONCEPTOS_Empleado1_idx`"
+            		"CREATE INDEX `fk_RELACION__EMPLEADO_CONCEPTOS_Empleado1_idx` "
             		+ "ON" + db +".`RELACION__EMPLEADO_CONCEPTOS` (`Empleado_idEmpleado` ASC);");
             pst.execute();
-            
+            */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`OBRA_SOCIAL` (\n"
                     + "  `idOBRA_SOCIAL` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `nombre` VARCHAR(45) NULL,\n"
@@ -639,19 +647,19 @@ public class DBModel {
                     + "  FOREIGN KEY (`Acoplado_idAcoplado`)\n"
                     + " REFERENCES `mydb`.`Acoplado` (`idAcoplado`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
-            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Remito_has_Acoplado_Acoplado1_idx`"
+            		"CREATE INDEX `fk_Remito_has_Acoplado_Acoplado1_idx` "
             		+ "ON" + db +".`Remito_has_Acoplado` (`Acoplado_idAcoplado` ASC);");
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Remito_has_Acoplado_Remito1_idx`"
+            		"CREATE INDEX `fk_Remito_has_Acoplado_Remito1_idx` "
             		+ "ON" + db +".`Remito_has_Acoplado` (`Remito_idRemito` ASC);");
             pst.execute();
-            
+            */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`RELACION_EMPLEADO_BANCO` (\n"
                     + "  `idRELACION_EMPLEADO_BANCO` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `BANCO_idBANCO` INT NOT NULL,\n"
@@ -667,19 +675,19 @@ public class DBModel {
                     + "  FOREIGN KEY (`Empleado_idEmpleado`)\n"
                     + " REFERENCES `mydb`.`Empleado` (`idEmpleado`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
-            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_RELACION_EMPLEADO_BANCO_BANCO1_idx`"
+            		"CREATE INDEX `fk_RELACION_EMPLEADO_BANCO_BANCO1_idx` "
             		+ "ON" + db +".`RELACION_EMPLEADO_BANCO` (`BANCO_idBANCO` ASC);");
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_RELACION_EMPLEADO_BANCO_Empleado1_idx`"
+            		"CREATE INDEX `fk_RELACION_EMPLEADO_BANCO_Empleado1_idx` "
             		+ "ON" + db +".`RELACION_EMPLEADO_BANCO` (`Empleado_idEmpleado` ASC);");
             pst.execute();
-            
+            */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`RELACION_EMPLEADO_OS` (\n"
                     + "  `idRELACION_EMPLEADO_OS` INT NOT NULL AUTO_INCREMENT,\n"
                     + "   `OBRA_SOCIAL_idOBRA_SOCIAL` INT NOT NULL,\n"
@@ -694,20 +702,20 @@ public class DBModel {
                     + "  FOREIGN KEY (`Empleado_idEmpleado`)\n"
                     + " REFERENCES `mydb`.`Empleado` (`idEmpleado`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
-            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_RELACION_EMPLEADO_OS_OBRA_SOCIAL1_idx`"
+            		"CREATE INDEX `fk_RELACION_EMPLEADO_OS_OBRA_SOCIAL1_idx` "
             		+ "ON" + db +".`RELACION_EMPLEADO_OS` (`OBRA_SOCIAL_idOBRA_SOCIAL` ASC);");
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_RELACION_EMPLEADO_OS_Empleado1_idx`"
+            		"CREATE INDEX `fk_RELACION_EMPLEADO_OS_Empleado1_idx` "
             		+ "ON" + db +".`RELACION_EMPLEADO_OS` (`Empleado_idEmpleado` ASC);");
             pst.execute();
             
-            
+            */
             pst = con.mkDataBase().prepareStatement("CREATE TABLE IF NOT EXISTS "+db+".`Familiar` (\n"
                     + "  `idFamiliar` INT NOT NULL AUTO_INCREMENT,\n"
                     + "  `Parentesco` VARCHAR(45) NULL,\n"
@@ -723,15 +731,17 @@ public class DBModel {
                     + "  FOREIGN KEY (`Empleado_idEmpleado`)\n"
                     + " REFERENCES `mydb`.`Empleado` (`idEmpleado`)\n"
                     + "  ON DELETE NO ACTION\n"
-                    + "  ON UPDATE NO ACTION,\n"
+                    + "  ON UPDATE NO ACTION)\n"
                     + "  ENGINE = InnoDB;");
             pst.execute();
+            
+            /*
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Familiar_Persona1_idx`"
+            		"CREATE INDEX `fk_Familiar_Persona1_idx` "
             		+ "ON" + db +".`Familiar` (`Persona_idPersona` ASC);");
             pst.execute();
             pst = con.mkDataBase().prepareStatement(
-            		"CREATE INDEX `fk_Familiar_Empleado1_idx`"
+            		"CREATE INDEX `fk_Familiar_Empleado1_idx` "
             		+ "ON" + db +".`Familiar` (`Empleado_idEmpleado` ASC);");
             pst.execute();
             
@@ -741,7 +751,7 @@ public class DBModel {
             		+ "SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;\n ");
             pst.execute();
             
-            
+            */
             
             
             
@@ -763,7 +773,7 @@ public class DBModel {
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);
-                stage.setTitle("Server Configur");
+                stage.setTitle("Server Configure");
                 stage.showAndWait();
             } catch (IOException ex1) {
                 Logger.getLogger(DBModel.class.getName()).log(Level.SEVERE, null, ex1);
