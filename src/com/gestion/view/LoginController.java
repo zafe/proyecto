@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import com.gestion.dal.Users;
 import com.gestion.database.DBConnection;
 import com.gestion.database.DBProperties;
+import com.gestion.main.MainApp;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -49,16 +50,13 @@ public class LoginController {
     private PreparedStatement pst;
     private Connection con;
     private ResultSet rs;
-    @FXML
-    private AnchorPane apMother;
-    @FXML
-    private AnchorPane apDesignPane;
-    
+
     DBProperties dBProperties = new DBProperties();
     String db = dBProperties.loadPropertiesFile();
     @FXML
     private Hyperlink hlDatabase;
-    
+    // Reference to the main application.
+    private MainApp mainApp;
     /**
      * Initializes the controller class.
      *
@@ -73,7 +71,15 @@ public class LoginController {
         btnLogin.disableProperty().bind(boolenBinding);
 
     }
-    
+    /**
+     * Is called by the main application to give a reference back to itself.
+     * 
+     * @param mainApp
+     */
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+
+    }
     @FXML
     private void hlCreateAnAccount(ActionEvent event) throws IOException {
         /*DBConnection dbCon = new DBConnection();
@@ -117,8 +123,29 @@ public class LoginController {
     
     @FXML
     private void btnLogin(ActionEvent event) throws IOException {
-/*
-        DBConnection dbCon = new DBConnection();
+    	
+    	FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/com/gestion/view/Application.fxml"));
+        loader.load();
+        System.out.println("controlador seteado");
+        Parent parent = loader.getRoot();
+        Scene adminPanelScene = new Scene(parent);
+        Stage adminPanelStage = new Stage();
+        adminPanelStage.setMaximized(true);
+       //userNameMedia usrNameMedia = new userNameMedia(rs.getString(1), rs.getString(2));
+        ApplicationController apControl = loader.getController();
+        //apControl.setUsrNameMedia(usrNameMedia);
+        apControl.btnHomeOnClick(event);
+       
+        adminPanelStage.setScene(adminPanelScene);
+        //adminPanelStage.getIcons().add(new Image("/image/icon.png"));
+        adminPanelStage.setTitle("titulo");
+        adminPanelStage.show();
+
+        Stage stage = (Stage) btnLogin.getScene().getWindow();
+        stage.close();
+    	
+        /*DBConnection dbCon = new DBConnection();
         con = dbCon.geConnection();
         if (con != null) {
             //userNameMedia media = new userNameMedia();
@@ -126,7 +153,7 @@ public class LoginController {
             //ApplicationController apController = new ApplicationController();
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/Application.fxml"));
+            loader.setLocation(getClass().getResource("/com/gestion/view/Application.fxml"));
             loader.load();
             Parent parent = loader.getRoot();
             Scene adminPanelScene = new Scene(parent);
@@ -134,17 +161,16 @@ public class LoginController {
             adminPanelStage.setMaximized(true);
             if (isValidCondition()) {
                 try {
-                    pst = con.prepareStatement("select * from " + db + ".User where UsrName=? and Password=? and Status=1");
+                    pst = con.prepareStatement("select * from " + db + ".usuario where NombreUsuario=? and Password=?");
                     pst.setString(1, tfUserName.getText());
                     pst.setString(2, pfUserPassword.getText());
                     rs = pst.executeQuery();
                     if (rs.next()) {
                         //userNameMedia usrNameMedia = new userNameMedia(rs.getString(1), rs.getString(2));
-                        //ApplicationController apControl = loader.getController();
+                        ApplicationController apControl = loader.getController();
                         //apControl.setUsrNameMedia(usrNameMedia);
-                        //apControl.btnHomeOnClick(event);
-                        //apControl.permission();
-                        //apControl.viewDetails();
+                        apControl.btnHomeOnClick(event);
+                       
                         adminPanelStage.setScene(adminPanelScene);
                         //adminPanelStage.getIcons().add(new Image("/image/icon.png"));
                         adminPanelStage.setTitle(rs.getString(3));
@@ -174,8 +200,8 @@ public class LoginController {
             alert.setContentText("Make sure your mysql is Start properly, \n");
             alert.initStyle(StageStyle.UNDECORATED);
             alert.showAndWait();
-        }*/
-
+        }
+*/
     }
     
 

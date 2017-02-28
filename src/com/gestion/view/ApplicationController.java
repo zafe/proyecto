@@ -44,9 +44,7 @@ public class ApplicationController {
 
 
     @FXML
-    private BorderPane appContent;
-    @FXML
-    private AnchorPane acDashBord;
+    private AnchorPane appContent;
     @FXML
     private AnchorPane acMain;
 
@@ -196,27 +194,7 @@ public class ApplicationController {
 
     }
 
-    public void permission() {
-        con = dbCon.geConnection();
-
-        try {
-            pst = con.prepareStatement("select * from "+db+".UserPermission where UserId=?");
-            pst.setString(1, id);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                if (rs.getInt(17) == 0) {
-                	btnVentas.setDisable(true);
-                }
-                if (rs.getInt(15) == 0) {
-                	btnCompras.setDisable(true);
-                } else {
-
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ApplicationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+ 
 
     private void homeActive() {
         

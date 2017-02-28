@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="apDesignPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gestion.view.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gestion.view.LoginController">
    <children>
-      <HBox fx:id="apMother" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="358.0">
                <children>
@@ -33,7 +33,7 @@
                               <Label text="Username:" />
                               <Label text="Password:" GridPane.rowIndex="1" />
                               <TextField fx:id="tfUserName" onAction="#pfUserNameOnHitEnter" GridPane.columnIndex="1" />
-                              <TextField fx:id="pfUserPassword" onAction="#pfUserPassOnHitEnter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <PasswordField fx:id="pfUserPassword" onAction="#pfUserPassOnHitEnter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                         <Button fx:id="btnLogin" layoutX="154.0" layoutY="160.0" mnemonicParsing="false" onAction="#btnLogin" text="Login" />
